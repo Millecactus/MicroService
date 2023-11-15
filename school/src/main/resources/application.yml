@@ -1,0 +1,33 @@
+#dicovery server
+eureka :
+  instance:
+    host: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8762/eureka
+
+#spring properties :
+
+spring:
+  application:
+    name: school
+  config:
+    import: optional:configserver:http://localhost:8888
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/school
+    username: root
+
+  #jpa properties
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+server:
+  port: 8070
+    
+  application:
+    config:
+      students-url: http://localhost:8091/api/v1/students
